@@ -4,8 +4,7 @@
 
 void monnaie(double r) {
     double b[] = {2000,1000,500,200,100,50,25,20,10,5,1,0.50,0.20,0.05};
-    char *n[] = {"Rs2000","Rs1000","Rs500","Rs200","Rs100","Rs50","Rs25",
-                "Rs20","Rs10","Rs5","Rs1","50 sous","20 sous","5 sous"};
+    char *n[] = {"Rs2000","Rs1000","Rs500","Rs200","Rs100","Rs50","Rs25","Rs20","Rs10","Rs5","Rs1","50 sous","20 sous","5 sous"};
     for(int i = 0; i < 14; i++) {
         if(r <= 0)
             break;
