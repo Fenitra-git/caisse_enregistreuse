@@ -2,30 +2,36 @@
 #include <stdlib.h>
 #include <time.h>
 
-int main() {
-
-    srand(time(0));
-    double montant_a_payer = (double)(rand() % 500000) / 100.0;
-    double montant_paye;
-
-    printf("Montant à payer: %.2f Rs\n", montant_a_payer);
-    
-    do {
-        printf("Entrez le montant que vous donnez pour payer: ");
-        scanf("%lf", &montant_paye);
-        
-        if(montant_paye < montant_a_payer) {
-            printf("Montant insuffisant! Il manque %.2f Rs.\n", montant_a_payer - montant_paye);
+void monnaie(double r) {
+    double b[] = {2000,1000,500,200,100,50,25,20,10,5,1,0.50,0.20,0.05};
+    char *n[] = {"Rs2000","Rs1000","Rs500","Rs200","Rs100","Rs50","Rs25",
+                "Rs20","Rs10","Rs5","Rs1","50 sous","20 sous","5 sous"};
+    for(int i = 0; i < 14; i++) {
+        if(r <= 0)
+            break;
+        if(r >= b[i]) {
+            int nb = r / b[i];
+            printf("%d x %s\n", nb, n[i]);
+            r -= nb * b[i];
         }
-    } while(montant_paye < montant_a_payer);
-    
-    printf("Merci pour votre paiement de %.2f Rs.\n", montant_paye);
-    
-    if(montant_paye > montant_a_payer) {
-        printf("Monnaie à rendre: %.2f Rs\n", montant_a_payer - montant_paye);
-    } else {
-        printf("Paiement exact, pas de monnaie à rendre.\n");
     }
+}
+
+int main() {
+    srand(time(0));
+    double a = (rand() % 500000) / 100.0;
+    double p;
+    printf("Montant à payer: %.2f Rs\n", a);
+    do {
+        printf("Argent donné: RS");
+        scanf("%lf", &p);
+        if(p < a) {
+            printf("Montant insuffisant!\n");
+        }
+    } while(p < a);
     
+    if(p > a) {
+        monnaie(p - a);
+    }
     return 0;
 }
